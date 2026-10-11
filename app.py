@@ -68,29 +68,3 @@ if uploaded_file is not None:
 
         st.subheader(f"Predicted Mudra: {predicted_label}")
         st.write(f"Confidence: {confidence:.2%}")
-load_model()
-encoder = load_encoder()
-
-st.title("Mudra Recognition")
-
-uploaded_file = st.file_uploader(
-    "Upload a mudra image",
-    type=["jpg", "jpeg", "png"]
-)
-
-if uploaded_file is not None:
-    img = Image.open(uploaded_file).convert("RGB")
-    st.image(img, caption="Uploaded Image")
-
-    img = img.resize((224, 224))
-    img_array = np.array(img, dtype=np.float32) / 255.0
-    img_array = np.expand_dims(img_array, axis=0)
-
-    predictions = model.predict(img_array, verbose=0)
-    class_index = np.argmax(predictions[0])
-
-    label = encoder.inverse_transform([class_index])[0]
-    confidence = predictions[0][class_index] * 100
-
-    st.success(f"Predicted Mudra: {label}")
-    st.write(f"Confidence: {confidence:.2f}%")
