@@ -1,23 +1,5 @@
 import streamlit as st
 import tensorflow as tf
-import pickle
-import numpy as np
-from PIL import Image
-
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model(
-        "mudra_cnn_model.keras"
-    )
-
-@st.cache_resource
-def load_encoder():
-    with open("label_encoder.pkl", "rb") as f:
-        return pickle.load(f)
-
-model = 
-import streamlit as st
-import tensorflow as tf
 import numpy as np
 import pickle
 
